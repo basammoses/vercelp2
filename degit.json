@@ -1,9 +1,0 @@
-[
-  {
-    "action": "remove",
-    "files": [
-      "readme.md",
-      ".github/"
-    ]
-  }
-]
