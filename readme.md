@@ -9,3 +9,6 @@ reduce reuse refurbished
 i plan to manually make a API that has the inventory of the refurbished items.
 i will do research on the most popular apple products for students and what is in demand. 
 i can also possibly add in post MVP a way for a user to "sell" their old used products and update it to the inventory database.
+
+
+<img width="666" alt="Screenshot 2023-02-21 at 2 15 05 PM" src="https://user-images.githubusercontent.com/123986048/220438082-16d1457f-15b9-4d34-a201-8b8ccd6ce6c2.png">
