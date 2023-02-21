@@ -9,11 +9,22 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.9.2"
   },
   "devDependencies": {
     "eslint": "^8.34.0",
     "nodemon": "^2.0.20",
     "vercel": "^28.16.2"
-  }
+  },
+  "description": "> [Template Used](https://github.com/metruzanca/ga-vercel-demo)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basammoses/vercelp2.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/basammoses/vercelp2/issues"
+  },
+  "homepage": "https://github.com/basammoses/vercelp2#readme"
 }

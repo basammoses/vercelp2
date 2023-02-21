@@ -1,0 +1,57 @@
+[
+  {
+    "productName": "Macbook Air",
+    "companyName": "Apple",
+    "year": 2020,
+    "refurbished": true,
+    "color": "Gold",
+    "price": 700,
+    "size": "256GB",
+    "screen": 13.3,
+    "stock": 12
+  },
+  {
+    "productName": "Macbook Pro",
+    "companyName": "Apple",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Space Gray",
+    "price": 1000,
+    "size": "512GB",
+    "screen": 13.3,
+    "stock": 5
+  },
+  {
+    "productName": "iPad Pro",
+    "companyName": "Apple",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Space Gray",
+    "price": 500,
+    "size": "128GB",
+    "screen": 11,
+    "stock": 15
+  },
+  {
+    "productName": "iPhone 12 Pro",
+    "companyName": "Apple",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Gold",
+    "price": 800,
+    "size": "128GB",
+    "screen": 6.1,
+    "stock": 10
+  },
+  {
+    "productName": "iPad Air",
+    "companyName": "Apple",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Gold",
+    "price": 300,
+    "size": "128GB",
+    "screen": 6.1,
+    "stock": 8
+  }
+]
