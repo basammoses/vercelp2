@@ -18,4 +18,4 @@ i would love to be able to incorporate this into a front end HTML CSS model to b
 
 i plan to manually make a API that has the inventory of the refurbished items.
 i will do research on the most popular apple products for students and what is in demand. 
-i can also possibly add in post MVP a way for a user to "sell" their old used products and update it to the inventory database
+i can also possibly add in post MVP a way for a user to "sell" their old used products and update it to the inventory database.
