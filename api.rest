@@ -10,3 +10,4 @@
 @baseUrl = {{host}}/api/
 
 GET {{baseUrl}}
+

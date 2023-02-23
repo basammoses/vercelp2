@@ -38,7 +38,7 @@
     "year": 2021,
     "refurbished": true,
     "color": "Gold",
-    "price": 800,
+    "price": 700,
     "size": "128GB",
     "screen": 6.1,
     "stock": 10
@@ -46,7 +46,7 @@
   {
     "productName": "iPad Air",
     "companyName": "Apple",
-    "year": 2021,
+    "year": 2019,
     "refurbished": true,
     "color": "Gold",
     "price": 300,
@@ -71,9 +71,9 @@
     "year": 2021,
     "refurbished": true,
     "color": "Space Gray",
-    "price": 500,
-    "size": "256GB",
-    "screen": 6.1,
+    "price": 400,
+    "size": "512GB",
+    "screen": null,
     "stock": 10
   },
   {
@@ -86,5 +86,38 @@
     "size": "256GB",
     "screen": 13.3,
     "stock": 10
+  },
+  {
+    "productName": "HP 14-DQ FHD Touchscreen Laptop",
+    "companyName": "HP",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Silver",
+    "price": 400,
+    "size": "512GB",
+    "screen": 14,
+    "stock": 40
+  },
+  {
+    "productName": "HP 15.6 HD Touchscreen Laptop", 
+    "companyName": "HP",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Silver",
+    "price": 300,
+    "size": "256GB",
+    "screen": 15.6,
+    "stock": 30
+  },
+  {
+    "productName": "Lenovo Slim 7 QHD Touchscreen Laptop",
+    "companyName": "Lenovo",
+    "year": 2021,
+    "refurbished": true,
+    "color": "Silver",
+    "price": 780,
+    "size": "1TB",
+    "screen": 14,
+    "stock": 20
   }
 ]
