@@ -5,7 +5,8 @@ const baseURL = 'https://vercelp2.vercel.app/api/'
 const getInv = async () => {
   const response = await fetch(baseURL)
   const data = await response.json()
-  console.log(data) 
+  
+  
 }
 
 getInv()
@@ -75,6 +76,27 @@ function quantityChanged(event) {
   updatetotal()
 }
 
+async function getInventory() {
+  const response = await fetch('https://vercelp2.vercel.app/api/')
+  const data = await response.json()  
+      const inventory = data
+      inventory.forEach(item => {
+        const inventoryItem = document.createElement('div')
+        inventoryItem.classList.add('product-box')
+        inventoryItem.innerHTML = `
+        <img src="${item.productImage}" alt="" class="product-img">
+        <div class="product-detail">
+        <div class="product-title">${item.productName}</div>
+        <div class="product-price">${item.price}</div>
+        </div>
+        <div class="add-cart" data-id="${item._id}">Add to cart</div>
+        `
+        document.querySelector('.shop content').appendChild(inventoryItem)
+      })
+    })
+}
+
+getInventory()
 
 function addProductToCart(title, price, productImage) {
   var cartShopBox = document.createElement('div')
@@ -87,6 +109,11 @@ function addProductToCart(title, price, productImage) {
       return
     }
   }
+  
+
+  
+  
+  
   var cartBoxContent = `<img src="${productImage}" alt="" class="cart-img">
   <div class="detail-box">
   <div class ="cart-product-title">${title}</div>
