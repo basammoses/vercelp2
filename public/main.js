@@ -79,11 +79,11 @@ function quantityChanged(event) {
 async function getInventory() {
   const response = await fetch('https://vercelp2.vercel.app/api/')
   const data = await response.json()  
-      const inventory = data
-      inventory.forEach(item => {
-        const inventoryItem = document.createElement('div')
-        inventoryItem.classList.add('product-box')
-        inventoryItem.innerHTML = `
+  const inventory = data
+  inventory.forEach(item => {
+    const inventoryItem = document.createElement('div')
+    inventoryItem.classList.add('product-box')
+    inventoryItem.innerHTML = `
         <img src="${item.productImage}" alt="" class="product-img">
         <div class="product-detail">
         <div class="product-title">${item.productName}</div>
@@ -91,10 +91,10 @@ async function getInventory() {
         </div>
         <div class="add-cart" data-id="${item._id}">Add to cart</div>
         `
-        document.querySelector('.shop content').appendChild(inventoryItem)
-      })
-    })
+    document.querySelector('.shop content').appendChild(inventoryItem)
+  })
 }
+
 
 getInventory()
 
