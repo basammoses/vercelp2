@@ -1,8 +1,14 @@
+
 const baseURL = 'https://vercelp2.vercel.app/api/'
 
 
+const getInv = async () => {
+  const response = await fetch(baseURL)
+  const data = await response.json()
+  console.log(data) 
+}
 
-
+getInv()
 
 
 /* eslint-disable no-undef */
