@@ -9,7 +9,8 @@ const inventorySchema = new mongoose.Schema({
   price: Number,
   size: String,
   screen: Number,
-  stock: Number
+  stock: Number,
+  img: String
 })
     
 export default mongoose.model('Inventory', inventorySchema)
