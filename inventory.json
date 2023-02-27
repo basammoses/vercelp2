@@ -1,6 +1,6 @@
 [
   {
-    "productName": "Macbook Air",
+    "productName": "Macbook_Air_2020",
     "companyName": "Apple",
     "year": 2020,
     "refurbished": true,
@@ -11,7 +11,7 @@
     "stock": 12
   },
   {
-    "productName": "Macbook Pro",
+    "productName": "Macbook_Pro_2021",
     "companyName": "Apple",
     "year": 2021,
     "refurbished": true,
@@ -22,7 +22,7 @@
     "stock": 5
   },
   {
-    "productName": "iPad Pro",
+    "productName": "iPad_Pro_2021",
     "companyName": "Apple",
     "year": 2021,
     "refurbished": true,
@@ -33,7 +33,7 @@
     "stock": 15
   },
   {
-    "productName": "iPhone 12 Pro",
+    "productName": "iPhone_12_Pro",
     "companyName": "Apple",
     "year": 2021,
     "refurbished": true,
@@ -44,7 +44,7 @@
     "stock": 10
   },
   {
-    "productName": "iPad Air",
+    "productName": "iPad_Air_2019",
     "companyName": "Apple",
     "year": 2019,
     "refurbished": true,
@@ -55,7 +55,7 @@
     "stock": 8
   },
   {
-    "productName": "iPhone 12",
+    "productName": "iPhone_12",
     "companyName": "Apple", 
     "year": 2021,
     "refurbished": true,
@@ -66,7 +66,7 @@
     "stock": 10
   },
   {
-    "productName": "Mac Mini",
+    "productName": "Mac_Mini_2021",
     "companyName": "Apple",
     "year": 2021,
     "refurbished": true,
@@ -77,7 +77,7 @@
     "stock": 10
   },
   {
-    "productName": "Macbook Air",
+    "productName": "Macbook_Air_2021",
     "companyName": "Apple",
     "year": 2021,
     "refurbished": true,

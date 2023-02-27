@@ -1,15 +1,11 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
-
+import router from '../inventoryrouter.js'
+import cartRouter from '../cartrouter.js'
 const app = express()
 
-const todoSchema = new mongoose.Schema({
-  text: String
-})
-
-const Todo = mongoose.model('Todo', todoSchema)
-
+// This is a middleware that runs before and after the handler.
 app.use(lifecycle({
   async setup() {
     console.log('Before handler')
@@ -25,13 +21,7 @@ app.use(lifecycle({
 }))
 
 // Feel free to use a router and move this elsewhere.
-app.get('/api', async (req, res) => {
-  await Todo.insertMany([{ text: (new Date()).toISOString() }])
-  const todos = await Todo.find()
-
-  console.log(process.env.DATABASE_URL)
-  res.json({ message: 'Hello World', todos })
-})
-
+app.use ('/api', router)
+app.use('/api/cart', cartRouter)
 // Don't use app.listen. Instead export app.
 export default app

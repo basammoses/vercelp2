@@ -7,7 +7,7 @@
 
 # You'll need to switch to either `local` or `vercel` to get started.
 
-@baseUrl = {{host}}/api/
+@baseUrl = {{host}}/inventory
 
 GET {{baseUrl}}
 
