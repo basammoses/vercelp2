@@ -77,19 +77,21 @@ function quantityChanged(event) {
 }
 
 async function getInventory() {
-  const response = await fetch('https://vercelp2.vercel.app/api/')
+  const response = await fetch(baseURL)
   const data = await response.json()  
   const inventory = data
-  inventory.forEach(item => {
+  inventory.forEach( id_ => {
     const inventoryItem = document.createElement('div')
     inventoryItem.classList.add('product-box')
     inventoryItem.innerHTML = `
-        <img src="${item.productImage}" alt="" class="product-img">
-        <div class="product-detail">
-        <div class="product-title">${item.productName}</div>
-        <div class="product-price">${item.price}</div>
-        </div>
-        <div class="add-cart" data-id="${item._id}">Add to cart</div>
+        <img src="${id_.productImage}" alt="" class="product-img">
+        <div class="product-title">${id_.productName}</div>
+        <div class="product-price">${id_.price}</div>
+        <div class="product-stock">${id_.stock}</div>
+        <div class ="product-size">${id_.size}</div>
+        <div class ="product-color">${id_.color}</div>
+        <div class ="screen-size">${id_.screen}</div>
+        <div class="add-cart" data-id="${id_._id}">Add to cart</div>
         `
     document.querySelector('.shop content').appendChild(inventoryItem)
   })
