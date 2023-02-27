@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
 import router from '../inventoryrouter.js'
 import cartRouter from '../cartrouter.js'
+import cors from 'cors'
 const app = express()
 
 // This is a middleware that runs before and after the handler.
@@ -19,6 +20,8 @@ app.use(lifecycle({
     await mongoose.disconnect()
   }
 }))
+
+app.use(cors())
 
 // Feel free to use a router and move this elsewhere.
 app.use ('/api', router)
