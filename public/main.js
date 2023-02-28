@@ -1,15 +1,11 @@
 
 const baseURL = 'https://vercelp2.vercel.app/api/'
+const localUrl = 'http://localhost:3001/api/'
 
 
-const getInv = async () => {
-  const response = await fetch(baseURL)
-  const data = await response.json()
   
-  
-}
 
-getInv()
+
 
 
 /* eslint-disable no-undef */
@@ -34,7 +30,10 @@ if (document.readyState == 'loading') {
   ready()
 }
 
-function ready() {
+
+async function ready() {
+  await getInventory()
+
   const removeCartItemButtons = document.getElementsByClassName('cart-remove')
   for (let i = 0; i < removeCartItemButtons.length; i++) {
     const button = removeCartItemButtons[i]
@@ -46,6 +45,7 @@ function ready() {
     input.addEventListener('change', quantityChanged)
   }
   var addCart = document.getElementsByClassName('add-cart')
+  console.log(addCart)
   for (let i = 0; i < addCart.length; i++) {
     var button = addCart[i]
     button.addEventListener('click', addToCartClicked)
@@ -76,29 +76,10 @@ function quantityChanged(event) {
   updatetotal()
 }
 
-async function getInventory() {
-  const response = await fetch(baseURL)
-  const data = await response.json()  
-  const inventory = data
-  inventory.forEach( id_ => {
-    const inventoryItem = document.createElement('div')
-    inventoryItem.classList.add('product-box')
-    inventoryItem.innerHTML = `
-        <img src="${id_.productImage}" alt="" class="product-img">
-        <div class="product-title">${id_.productName}</div>
-        <div class="product-price">${id_.price}</div>
-        <div class="product-stock">${id_.stock}</div>
-        <div class ="product-size">${id_.size}</div>
-        <div class ="product-color">${id_.color}</div>
-        <div class ="screen-size">${id_.screen}</div>
-        <div class="add-cart" data-id="${id_._id}">Add to cart</div>
-        `
-    document.querySelector('.shop content').appendChild(inventoryItem)
-  })
-}
 
 
-getInventory()
+
+
 
 function addProductToCart(title, price, productImage) {
   var cartShopBox = document.createElement('div')
@@ -151,11 +132,43 @@ function updatetotal() {
 function addToCartClicked(event) {
   var button = event.target
   var shopProducts = button.parentElement
+  console.log(shopProducts)
   var title = shopProducts.getElementsByClassName('product-title')[0].innerText
   var price = shopProducts.getElementsByClassName('product-price')[0].innerText
   var productImg = shopProducts.getElementsByClassName('product-img')[0].src
   addProductToCart(title, price, productImg)
   updatetotal()
+}
+
+async function getInventory() {
+  const response = await fetch(localUrl)
+  const data = await response.json()  
+  const inventory = data
+  console.log(inventory)
+  
+  for (let i = 0; i < inventory.length; i++) {
+    const product = inventory[i]
+    
+    console.log(product)
+    console.log(product.productName)
+    const inventoryItem = document.createElement('div')
+    const shopContent = document.querySelector('.shop-content')
+    inventoryItem.classList.add('product-box')
+    const titleFiltered = (product.productName.replaceAll('_', ' '))
+    inventoryItem.innerHTML = `
+        <img src="${product.img}" alt="" class="product-img">
+        <h2 class="product-title">${titleFiltered}</h2>
+        <span class="product-price">$${product.price}</span>
+        <div class="product-stock">stock: ${product.stock}</div>
+        <div class ="product-size">screen size: ${product.size}</div>
+        <div class ="product-color">color: ${product.color}</div>
+        <div class ="screen-size">screen size: ${product.screen}</div>
+        <i class = 'bx bx-shopping-bag add-cart'></i>
+        `
+    
+    shopContent.append(inventoryItem)
+  }
+  
 }
 
 
