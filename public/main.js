@@ -40,7 +40,7 @@ async function ready() {
     const button = removeCartItemButtons[i]
     button.addEventListener('click', removeCartItem)
   }
-  await updatetotal()
+  
   var quantityInputs = document.getElementsByClassName('cart-quantity')
   for (let i = 0; i < quantityInputs.length; i++) {
     
@@ -162,7 +162,7 @@ async function getInventory() {
     const inventoryItem = document.createElement('div')
     const shopContent = document.querySelector('.shop-content')
     inventoryItem.classList.add('product-box')
-    const titleFiltered = (product.productName.replaceAll('_', ' '))
+    const titleFiltered = product.productName.replaceAll('_', ' ')
     let screenFiltered = product.screen
       
     if ( product.screen == null ) {
