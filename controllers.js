@@ -69,10 +69,9 @@ export const updateStockinInventory = async (req, res) => {
 
 export const updateInventoryItem = async (req, res) => {
   try {
-    const { productName } = req.params
-    const invItem = await Inventory.findOneAndUpdate(productName, req.body )
+    const invItem = await Inventory.findOneAndUpdate({ productName: req.params.productName }, req.body )
     if (!invItem) {
-      return res.status(404).json({ message: `Product ${productName} not found.` })
+      return res.status(404).json({ message: `Product ${req.params.productName} not found.` })
     }
     await invItem.save()
     res.status(200).json(invItem)
