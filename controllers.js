@@ -120,8 +120,8 @@ export const addInventoryItem = async (req, res) => {
   })
   try {
     await newItem.save()
-    res.status(201).json(newItem)
+    return res.status(201).json(newItem)
   } catch (error) {
-    res.status(409).json({ message: error.message })
+    return res.status(409).json({ message: error.message })
   }
 }
