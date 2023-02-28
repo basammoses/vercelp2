@@ -119,7 +119,7 @@ export const addInventoryItem = async (req, res) => {
       img: img
     })
   
-    return res.status(201).json(newItem)
+    return res.json(newItem)
   } catch (error) {
     return res.status(409).json({ message: error.message })
   }
