@@ -41,16 +41,16 @@ async function ready() {
     button.addEventListener('click', removeCartItem)
   }
   
-  var quantityInputs = document.getElementsByClassName('cart-quantity')
+  const quantityInputs = document.getElementsByClassName('cart-quantity')
   for (let i = 0; i < quantityInputs.length; i++) {
     
-    var input = quantityInputs[i]
+    let input = quantityInputs[i]
     input.addEventListener('change', quantityChanged)
   }
-  var addCart = document.getElementsByClassName('add-cart')
+  const addCart = document.getElementsByClassName('add-cart')
   console.log(addCart)
   for (let i = 0; i < addCart.length; i++) {
-    var button = addCart[i]
+    let button = addCart[i]
     button.addEventListener('click', addToCartClicked)
   }
 }
@@ -58,7 +58,7 @@ document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButto
 
 async function buyButtonClicked() {
   alert('Thank you for your purchase')
-  var cartItems = document.getElementsByClassName('cart-content')[0]
+  let cartItems = document.getElementsByClassName('cart-content')[0]
   while (cartItems.hasChildNodes()) {
     cartItems.removeChild(cartItems.firstChild)
   }
@@ -87,11 +87,11 @@ async function quantityChanged(event) {
 
 
 async function addProductToCart(title, price, productImage, stock) {
-  var cartShopBox = document.createElement('div')
+  const cartShopBox = document.createElement('div')
   cartShopBox.classList.add('cart-box')
-  var cartItems = document.getElementsByClassName('cart-content')[0]
-  var cartItemNames = cartItems.getElementsByClassName('cart-product-title')
-  for (var i = 0; i < cartItemNames.length; i++) {
+  const cartItems = document.getElementsByClassName('cart-content')[0]
+  const cartItemNames = cartItems.getElementsByClassName('cart-product-title')
+  for (let i = 0; i < cartItemNames.length; i++) {
     if (cartItemNames[i].innerText == title) {
       alert('This item is already added to the cart')
       return
@@ -102,7 +102,7 @@ async function addProductToCart(title, price, productImage, stock) {
   
   
   
-  var cartBoxContent = `<img src="${productImage}" alt="" class="cart-img">
+  const cartBoxContent = `<img src="${productImage}" alt="" class="cart-img">
   <div class="detail-box">
   <div class ="cart-product-title">${title}</div>
   <div class ="cart-price">${price}</div>
@@ -119,16 +119,16 @@ async function addProductToCart(title, price, productImage, stock) {
   
 }
 async function updatetotal() {
-  var cartContent = document.getElementsByClassName('cart-content')[0]
-  var cartBoxes = cartContent.getElementsByClassName('cart-box')
-  var total = 0
+  const cartContent = document.getElementsByClassName('cart-content')[0]
+  const cartBoxes = cartContent.getElementsByClassName('cart-box')
+  let total = 0
   for (let i = 0; i < cartBoxes.length; i++) {
-    var cartBox = cartBoxes[i]
-    var priceElement = cartBox.getElementsByClassName('cart-price')[0]
+    let cartBox = cartBoxes[i]
+    const priceElement = cartBox.getElementsByClassName('cart-price')[0]
     console.log(priceElement)
-    var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
-    var price = parseFloat(priceElement.innerText.replace('$', ''))
-    var quantity = quantityElement.value
+    const quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
+    let price = parseFloat(priceElement.innerText.replace('$', ''))
+    let quantity = quantityElement.value
 
     total = total + (price * quantity)
   }
@@ -137,19 +137,19 @@ async function updatetotal() {
     
 }
 async function addToCartClicked(event) {
-  var button = event.target
-  var shopProducts = button.parentElement
+  const button = event.target
+  const shopProducts = button.parentElement
   console.log(shopProducts)
-  var title = shopProducts.getElementsByClassName('product-title')[0].innerText
-  var price = shopProducts.getElementsByClassName('product-price')[0].innerText
-  var productImg = shopProducts.getElementsByClassName('product-img')[0].src
-  var stock = shopProducts.getElementsByClassName('product-stock')[0].innerText
+  const title = shopProducts.getElementsByClassName('product-title')[0].innerText
+  const price = shopProducts.getElementsByClassName('product-price')[0].innerText
+  const productImg = shopProducts.getElementsByClassName('product-img')[0].src
+  const stock = shopProducts.getElementsByClassName('product-stock')[0].innerText
   addProductToCart(title, price, productImg, stock)
   updatetotal()
 }
 
 async function getInventory() {
-  const response = await fetch(localUrl)
+  const response = await fetch(baseURL)
   const data = await response.json()  
   const inventory = data
   console.log(inventory)
