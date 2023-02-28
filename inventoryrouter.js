@@ -6,10 +6,11 @@ router.get ('/', controllers.getInventory)
 
 router.get('/:productName', controllers.getInventoryItem)
 
-router.post('/:productName/add', controllers.addInventoryItemtoShoppingCart)
+router.post('/add', controllers.addInventoryItem)
 
-// router.post('/cart/:productName/add', controllers.addInventoryItemtoShoppingCart)
-router.patch('/:productName/update', controllers.updateStock)
+router.patch('/updateStock/:productName', controllers.updateStock)
+
+router.patch('/update/:productName', controllers.updateInventoryItem)
 
 router.delete('/:productName/delete', controllers.deleteInventoryItem)
 

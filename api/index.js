@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import lifecycle from './middleware/lifecycle.js'
 import router from '../inventoryrouter.js'
-import cartRouter from '../cartrouter.js'
+
 import cors from 'cors'
 const app = express()
 
@@ -25,6 +25,5 @@ app.use(cors())
 
 // Feel free to use a router and move this elsewhere.
 app.use ('/api', router)
-app.use('/api/cart', cartRouter)
 // Don't use app.listen. Instead export app.
 export default app

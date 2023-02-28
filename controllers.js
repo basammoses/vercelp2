@@ -1,4 +1,4 @@
-import ShoppingCart from './models/model1.js'
+
 import Inventory from './models/inventory.js'
 //import inventory from './models/inventory.js'
 
@@ -15,43 +15,9 @@ export const getInventory = async (req, res) => {
   }
 }
 
-export const getShoppingCartItem = async (req, res) => {
-  try {
-    const shoppingCart = await ShoppingCart.findById(req.params.id)
-    res.status(200).json(shoppingCart)
-  } catch (error) {
-    res.status(404).json({ message: error.message })
-  }
-}
 
-export const getShoppingCart = async (req, res) => {
-  try {
-    const shoppingCart = await ShoppingCart.find()
-    res.status(200).json(shoppingCart)
-  } catch (error) {
-    res.status(404).json({ message: error.message })
-  }
-}
 
-// export const addProductToShoppingCart = async (req, res) => {
-//   const { product } = req.body
-//   const newProduct = new ShoppingCart({ product })
-//   try {
-//     await newProduct.save()
-//     res.status(201).json(newProduct)
-//   } catch (error) {
-//     res.status(409).json({ message: error.message })
-//   }
-// }
 
-export const deleteProductFromShoppingCart = async (req, res) => {
-  try {
-    await ShoppingCart.findByIdAndRemove(req.params.id)
-    res.json({ message: 'Product deleted successfully.' })
-  } catch (error) {
-    res.status(404).json({ message: error.message })
-  }
-}
 
 export const getProductName = async (req, res) => { 
   try {
@@ -79,35 +45,9 @@ export const getInventoryItem = async (req, res) => {
   }
 }
 
-export const addInventoryItemtoShoppingCart = async (req, res) => {
-  const { productName } = req.body
-  const item = await Inventory.findOne({ productName })
-  
-  if (item) {
-    await ShoppingCart.create(item)
-    res.status(201).json(item)
-  } else {
-    res.status(404).json({ message: `Product ${productName} not found.` })
-  }
-}
 
-export const deleteShoppingCartIem = async (req, res) => {
-  try {
-    await ShoppingCart.findByIdAndRemove(req.params.id)
-    res.json({ message: 'Product deleted successfully.' })
-  } catch (error) {
-    res.status(404).json({ message: error.message })
-  }
-}
 
-export const deleteAll = async (req, res) => {
-  try {
-    await ShoppingCart.deleteMany()
-    res.json({ message: 'Cart deleted successfully.' })
-  } catch (error) {
-    res.status(404).json({ message: error.message })
-  }
-}
+
 
 export const updateStockinInventory = async (req, res) => {
  
@@ -127,7 +67,19 @@ export const updateStockinInventory = async (req, res) => {
 
   
 
-  
+export const updateInventoryItem = async (req, res) => {
+  try {
+    const { productName } = req.params 
+    let invItem = await Inventory.findOneAndUpdate(productName, req.body)
+    if (!invItem) {
+      return res.status(404).json({ message: `Product ${productName} not found.` })
+    }
+    await invItem.save()
+    res.status(200).json(invItem)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
   
 
 export const updateStock = async (req, res) => {
@@ -145,20 +97,20 @@ export const updateStock = async (req, res) => {
 
 export const deleteInventoryItem = async (req, res) => {
   try {
-    await Inventory.findOneAndDelete(req.params.productName)
+    await Inventory.findOneAndDelete({ productName: req.params.productName })
     res.json({ message: 'Product deleted successfully.' })
   } catch (error) {
     res.status(404).json({ message: error.message })
   }
 }
 
-export const totalPrice = async (req, res) => {
-  const cart = await ShoppingCart.find()
-
-  let totalPrice = 0
-  
-  for (let i = 0; i < cart.length; i++) {
-    totalPrice += cart[i].price
+export const addInventoryItem = async (req, res) => {
+  const item = req.body
+  const newItem = new Inventory(item)
+  try {
+    await newItem.save()
+    res.status(201).json(newItem)
+  } catch (error) {
+    res.status(409).json({ message: error.message })
   }
-
 }
