@@ -106,7 +106,7 @@ export const deleteInventoryItem = async (req, res) => {
 
 export const addInventoryItem = async (req, res) => {
   try{const {productName, companyName, year, refurbished, color, price, size, screen, stock, img} = req.body
-    const newItem =  Inventory.create({
+    const newItem =  await Inventory.create({
       productName: productName,
       companyName: companyName,
       year: year,
