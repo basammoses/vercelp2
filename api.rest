@@ -7,7 +7,24 @@
 
 # You'll need to switch to either `local` or `vercel` to get started.
 
-@baseUrl = {{host}}/inventory
+@baseUrl = {{host}}/api
 
 GET {{baseUrl}}
+###
+POST {{baseUrl}}/add
+Content-Type: application/json
+
+{
+	"productName": "Trashbook_Air",
+	"companyName": "Apple",
+	"year": 2020,
+	"refurbished": true,
+	"color": "Goldddd",
+	"price": 700,
+	"size": "256GB",
+	"screen": 13.3,
+	"stock": 12,
+	"img": "https://i.imgur.com/lQL2h1H.jpg"
+}
+
 

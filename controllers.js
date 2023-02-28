@@ -9,9 +9,9 @@ export const getInventory = async (req, res) => {
     res.status(200).json(inventory)
   } catch (error) {
     res.status(404).json({ message: error.message })
-  
-  
-  
+
+
+
   }
 }
 
@@ -19,7 +19,7 @@ export const getInventory = async (req, res) => {
 
 
 
-export const getProductName = async (req, res) => { 
+export const getProductName = async (req, res) => {
   try {
     const product = await Inventory.findOne({ productName: req.params.productName })
     res.status(200).json(product)
@@ -27,7 +27,7 @@ export const getProductName = async (req, res) => {
   catch (error) {
     res.status(404).json({ message: error.message })
   }
-  
+
 }
 
 export const getInventoryItem = async (req, res) => {
@@ -39,7 +39,7 @@ export const getInventoryItem = async (req, res) => {
       res.status(404).json({ message: `Product ${productName} not found.` })
     }
     return res.status(200).json(item)
-    
+
   } catch (error) {
     res.status(404).json({ message: error.message })
   }
@@ -50,7 +50,7 @@ export const getInventoryItem = async (req, res) => {
 
 
 export const updateStockinInventory = async (req, res) => {
- 
+
   try {
     const { id } = req.params
     let inventory = await Inventory.findByIdAndUpdate(id, req.body)
@@ -65,12 +65,12 @@ export const updateStockinInventory = async (req, res) => {
 }
 
 
-  
+
 
 export const updateInventoryItem = async (req, res) => {
   try {
-    const { productName } = req.params 
-    let invItem = await Inventory.findOneAndUpdate(productName, req.body)
+    const { productName } = req.params
+    const invItem = await Inventory.findOneAndUpdate(productName, req.body )
     if (!invItem) {
       return res.status(404).json({ message: `Product ${productName} not found.` })
     }
@@ -80,13 +80,13 @@ export const updateInventoryItem = async (req, res) => {
     res.status(404).json({ message: error.message })
   }
 }
-  
+
 
 export const updateStock = async (req, res) => {
-  
-  try{
+
+  try {
     await Inventory.updateOne({ productName: req.params.productName }, { $inc: { stock: -1 } })
-  
+
     res.status(200).json({ message: 'Stock updated successfully.' })
   } catch (error) {
     res.status(404).json({ message: error.message })
@@ -105,23 +105,15 @@ export const deleteInventoryItem = async (req, res) => {
 }
 
 export const addInventoryItem = async (req, res) => {
-  try {
-    console.log(req.body)
-    const { productName, companyName, year, refurbished, color, price, size, screen, stock, img } = req.body
-    const newItem =
-    await Inventory.create({
-      productName: productName,
-      companyName: companyName,
-      year: year,
-      refurbished: refurbished,
-      color: color,
-      price: price,
-      size: size,
-      screen: screen,
-      stock : stock,
-      img: img
-    })
+  // const { productName, companyName, year, refurbished, color, price, size, screen, stock, img } = req.body
   
+  const body = req.body
+  
+
+  try {
+    const newItem =
+      await Inventory.create(body)
+
     return res.json(newItem)
   } catch (error) {
     return res.status(409).json({ message: error.message })

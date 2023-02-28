@@ -10,7 +10,7 @@ router.post('/add', controllers.addInventoryItem)
 
 router.patch('/updateStock/:productName', controllers.updateStock)
 
-router.patch('/update/:productName', controllers.updateInventoryItem)
+router.patch('/:productName/update', controllers.updateInventoryItem)
 
 router.delete('/:productName/delete', controllers.deleteInventoryItem)
 

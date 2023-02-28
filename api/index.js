@@ -5,6 +5,7 @@ import router from '../inventoryrouter.js'
 
 import cors from 'cors'
 const app = express()
+app.use(express.json())
 
 // This is a middleware that runs before and after the handler.
 app.use(lifecycle({
@@ -24,6 +25,6 @@ app.use(lifecycle({
 app.use(cors())
 
 // Feel free to use a router and move this elsewhere.
-app.use ('/api', router)
+app.use('/api', router)
 // Don't use app.listen. Instead export app.
 export default app
