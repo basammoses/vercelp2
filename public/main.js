@@ -1,6 +1,6 @@
 
 const baseURL = 'https://vercelp2.vercel.app/api/'
-const localUrl = 'http://localhost:3001/api/'
+const localUrl = 'http://localhost:3000/api/'
 
 
   
@@ -33,14 +33,17 @@ if (document.readyState == 'loading') {
 
 async function ready() {
   await getInventory()
-
+  
+  
   const removeCartItemButtons = document.getElementsByClassName('cart-remove')
   for (let i = 0; i < removeCartItemButtons.length; i++) {
     const button = removeCartItemButtons[i]
     button.addEventListener('click', removeCartItem)
   }
+  await updatetotal()
   var quantityInputs = document.getElementsByClassName('cart-quantity')
   for (let i = 0; i < quantityInputs.length; i++) {
+    
     var input = quantityInputs[i]
     input.addEventListener('change', quantityChanged)
   }
@@ -53,27 +56,29 @@ async function ready() {
 }
 document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButtonClicked)
 
-function buyButtonClicked() {
+async function buyButtonClicked() {
   alert('Thank you for your purchase')
   var cartItems = document.getElementsByClassName('cart-content')[0]
   while (cartItems.hasChildNodes()) {
     cartItems.removeChild(cartItems.firstChild)
   }
+  
   updatetotal()
 }
 
 
-function removeCartItem(event) {
+async function removeCartItem(event) {
   const buttonClicked = event.target
   buttonClicked.parentElement.remove()
   updatetotal()
 }
-function quantityChanged(event) {
+async function quantityChanged(event) {
   const input = event.target
   if (isNaN(input.value) || input.value <= 0) {
     input.value = 1
+    input.parentElement.getElementsByClassName('product-stock').innerText
   }
-  updatetotal()
+  await updatetotal()
 }
 
 
@@ -81,7 +86,7 @@ function quantityChanged(event) {
 
 
 
-function addProductToCart(title, price, productImage) {
+async function addProductToCart(title, price, productImage, stock) {
   var cartShopBox = document.createElement('div')
   cartShopBox.classList.add('cart-box')
   var cartItems = document.getElementsByClassName('cart-content')[0]
@@ -103,7 +108,8 @@ function addProductToCart(title, price, productImage) {
   <div class ="cart-price">${price}</div>
   <input type = "number" value = "1" class = "cart-quantity">
   </div>
-  <i class = 'bx bxs-trash-alt cart-remove'></i>`
+  <i class = 'bx bxs-trash-alt cart-remove'></i>
+  <div hidden class="product-stock">${stock}</div>`
   
   cartShopBox.innerHTML = cartBoxContent
   cartItems.append(cartShopBox)
@@ -112,7 +118,7 @@ function addProductToCart(title, price, productImage) {
   
   
 }
-function updatetotal() {
+async function updatetotal() {
   var cartContent = document.getElementsByClassName('cart-content')[0]
   var cartBoxes = cartContent.getElementsByClassName('cart-box')
   var total = 0
@@ -123,20 +129,22 @@ function updatetotal() {
     var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
     var price = parseFloat(priceElement.innerText.replace('$', ''))
     var quantity = quantityElement.value
+
     total = total + (price * quantity)
   }
     
   document.getElementsByClassName('total-price')[0].innerText = '$' + total
     
 }
-function addToCartClicked(event) {
+async function addToCartClicked(event) {
   var button = event.target
   var shopProducts = button.parentElement
   console.log(shopProducts)
   var title = shopProducts.getElementsByClassName('product-title')[0].innerText
   var price = shopProducts.getElementsByClassName('product-price')[0].innerText
   var productImg = shopProducts.getElementsByClassName('product-img')[0].src
-  addProductToCart(title, price, productImg)
+  var stock = shopProducts.getElementsByClassName('product-stock')[0].innerText
+  addProductToCart(title, price, productImg, stock)
   updatetotal()
 }
 
@@ -155,14 +163,20 @@ async function getInventory() {
     const shopContent = document.querySelector('.shop-content')
     inventoryItem.classList.add('product-box')
     const titleFiltered = (product.productName.replaceAll('_', ' '))
+    let screenFiltered = product.screen
+      
+    if ( product.screen == null ) {
+      
+      screenFiltered =  product.screen = 'N/A'
+    }
     inventoryItem.innerHTML = `
         <img src="${product.img}" alt="" class="product-img">
         <h2 class="product-title">${titleFiltered}</h2>
         <span class="product-price">$${product.price}</span>
         <div class="product-stock">stock: ${product.stock}</div>
-        <div class ="product-size">screen size: ${product.size}</div>
+        <div class ="product-size">storage size: ${product.size}</div>
         <div class ="product-color">color: ${product.color}</div>
-        <div class ="screen-size">screen size: ${product.screen}</div>
+        <div class ="screen-size">screen size: ${screenFiltered}</div>
         <i class = 'bx bx-shopping-bag add-cart'></i>
         `
     
